@@ -1,48 +1,28 @@
 ````markdown
+# 📄 LaTeX Exam Generator Template
 
-# LaTeX Exam Generator Template
+A reusable LaTeX framework for creating **Question Sheets**, **Answer Sheets**, and **Instructor Answer Keys** from a single source. The template is designed for university courses and emphasizes consistency, maintainability, and ease of reuse across different semesters.
 
-*A reusable LaTeX framework for creating professional university exams, answer sheets, and instructor answer keys from a single project.*
-
-> *"The measure of a great teacher is not what they know — but what they awaken in others."*
+> *"The measure of a great teacher is not what they know — but what they awaken in others."*  
 > **— Ruwa AbuHweidi**
 
 ---
 
-Welcome to the **LaTeX Exam Generator Template**.
+## ✨ Features
 
-This repository provides a reusable and well-structured LaTeX framework for preparing university exams. It is designed to generate three documents from a single project:
-
-* **Question Sheet** – The official exam distributed to students.
-* **Answer Sheet** – A clean sheet with appropriate writing space.
-* **Answer Key** – Complete instructor solutions for grading.
+- Generate three exam documents from one project:
+  - 📘 Question Sheet
+  - ✍️ Answer Sheet
+  - ✅ Answer Key
+- Reusable for different courses and semesters.
+- Consistent page layout and formatting.
+- Automatic headers, footers, and exam metadata.
+- Configurable answer-space allocation.
+- AI-friendly workflow for generating exam content.
 
 ---
 
-## Project Structure
-
-The current project structure is:
-
-```text
-Project/
-│
-├── Chapter7_8_Quiz/
-│   ├── questions.tex
-│   ├── answersheet.tex
-│   └── keyanswers.tex
-│
-├── BZU_LOGO.png
-└── main.tex
-````
-
-You may also add:
-
-```text
-README.md
-PROMPT.md
-```
-
-The recommended final structure is:
+## 📂 Repository Structure
 
 ```text
 Project/
@@ -59,6 +39,46 @@ Project/
 ```
 
 ---
+
+## 🚀 Quick Start
+
+1. Open `main.tex`.
+2. Update the exam metadata (course, semester, instructor, duration, etc.).
+3. Edit or generate:
+   - `questions.tex`
+   - `answersheet.tex`
+   - `keyanswers.tex`
+4. Compile `main.tex`.
+
+The generated PDF will contain:
+
+1. Question Sheet
+2. Answer Sheet
+3. Extra Paper
+4. Answer Key
+
+---
+
+## 🤖 AI Integration
+
+This repository is designed to work seamlessly with ChatGPT.
+
+The recommended prompt is provided in:
+
+```text
+PROMPT.md
+```
+
+Provide ChatGPT with the project (or ZIP file) together with `PROMPT.md`, and it will generate or update:
+
+- `questions.tex`
+- `answersheet.tex`
+- `keyanswers.tex`
+
+without modifying the template itself.
+
+---
+````
 
 ## File Descriptions
 
