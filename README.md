@@ -35,6 +35,7 @@ Project/
 │   └── keyanswers.tex
 │
 ├── BZU_LOGO.png
+├── LaTeX_Exam_Generator_Template.zip
 ├── main.tex
 ├── README.md
 └── PROMPT.md
