@@ -1,18 +1,21 @@
 ````markdown
-# LaTeX Exam Template
 
-This project is a reusable LaTeX template for preparing university exams in a clean and organized way.
+# LaTeX Exam Generator Template
 
-It is designed to generate three main parts from the same project:
+*A reusable LaTeX framework for creating professional university exams, answer sheets, and instructor answer keys from a single project.*
 
-1. **Question Sheet**  
-   The official exam paper given to students.
+> *"The measure of a great teacher is not what they know — but what they awaken in others."*
+> **— Ruwa AbuHweidi**
 
-2. **Answer Sheet**  
-   A blank answer sheet where students write their final answers.
+---
 
-3. **Answer Key**  
-   A complete instructor solution used for grading.
+Welcome to the **LaTeX Exam Generator Template**.
+
+This repository provides a reusable and well-structured LaTeX framework for preparing university exams. It is designed to generate three documents from a single project:
+
+* **Question Sheet** – The official exam distributed to students.
+* **Answer Sheet** – A clean sheet with appropriate writing space.
+* **Answer Key** – Complete instructor solutions for grading.
 
 ---
 
