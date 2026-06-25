@@ -1,0 +1,258 @@
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% Packages
+% =========================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[left=0.8in, right=0.8in, top=1.5cm, bottom=1.5cm,
+            headheight=15pt, headsep=8pt, footskip=20pt]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{etoolbox}
+\usepackage{ifthen}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{tasks}
+\usepackage[normalem]{ulem}
+\usepackage{lastpage}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% =========================================================================
+% Solution Box Style
+% =========================================================================
+\newmdenv[
+  linewidth=1pt,
+  linecolor=black!60,
+  backgroundcolor=gray!5,
+  innertopmargin=8pt,
+  innerbottommargin=8pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+]{solutionbox}
+
+% =========================================================================
+% 1. Exam Metadata — Edit these for each exam
+% =========================================================================
+\newcommand{\Department}{Computer Science Department}
+\newcommand{\CourseCodeName}{COMP233 - Discrete Mathematics}
+\newcommand{\Semester}{Spring 2026}
+\newcommand{\ExamDetails}{Section \#4 | Quiz \#2 | Chapters 7, 8.1}
+\newcommand{\Duration}{40 Minutes}
+\newcommand{\TotalMarks}{100}
+\newcommand{\weight}{10}
+\newcommand{\InstructorName}{Ruwa AbuHweidi}
+
+% =========================================================================
+% 2. Answer Space Control
+%    Increase or decrease this value to scale all blank answer spaces.
+% =========================================================================
+\newcommand{\AnswerSpaceScale}{7}
+
+% =========================================================================
+% 3. Mode Flags
+%    These flags control which version is printed:
+%    - Question Sheet
+%    - Blank Answer Sheet
+%    - Answer Key
+% =========================================================================
+\newboolean{isAnswerMode}
+\newboolean{isKeyMode}
+
+\setboolean{isAnswerMode}{false}
+\setboolean{isKeyMode}{false}
+
+% Shows question text only in the Question Sheet.
+% Hides question text in the Answer Sheet and Answer Key.
+\newcommand{\questiontext}[1]{%
+  \ifthenelse{\boolean{isAnswerMode} \OR \boolean{isKeyMode}}{}{#1}%
+}
+
+% Adds blank answer space only in the Answer Sheet.
+\newcommand{\answerspace}[1]{%
+  \ifthenelse{\boolean{isAnswerMode}}{\vspace{#1}}{}%
+}
+
+% =========================================================================
+% 4. Question Environment
+% =========================================================================
+\newcounter{examqmarks}
+
+\NewDocumentEnvironment{examquestion}{m m O{}}{%
+  % #1 = question number
+  % #2 = marks
+  % #3 = optional fixed answer space override, e.g. 4cm
+  \setcounter{examqmarks}{#2}%
+  \noindent\textbf{Question #1 \normalfont(#2 Marks):}%
+  \ifthenelse{\boolean{isAnswerMode} \OR \boolean{isKeyMode}}{%
+    \par\vspace{0.1cm}%
+  }{%
+    \space
+  }%
+}{%
+  \ifthenelse{\boolean{isAnswerMode}}{%
+    \ifthenelse{\equal{#3}{}}{%
+      \answerspace{\the\numexpr\value{examqmarks}*\AnswerSpaceScale\relax pt}%
+    }{%
+      \answerspace{#3}%
+    }%
+  }{%
+    \vspace{0.1cm}%
+  }%
+}
+
+% =========================================================================
+% 5. Subpart Environment
+% =========================================================================
+\newlist{subparts}{enumerate}{1}
+\setlist[subparts]{
+  label=(\alph*),
+  leftmargin=1.8em,
+  topsep=0pt,
+  itemsep=6pt,
+  parsep=0pt
+}
+
+\NewDocumentCommand{\subpart}{m m O{}}{%
+  % #1 = subpart text
+  % #2 = marks
+  % #3 = optional fixed answer space override
+  \item
+  \ifthenelse{\boolean{isAnswerMode} \OR \boolean{isKeyMode}}{%
+    \ifthenelse{\boolean{isAnswerMode}}{%
+      \ifthenelse{\equal{#3}{}}{%
+        \answerspace{\the\numexpr#2*\AnswerSpaceScale\relax pt}%
+      }{%
+        \answerspace{#3}%
+      }%
+      \vspace{0.2cm}%
+    }{}%
+  }{%
+    #1 \textit{(#2 marks)}%
+    \vspace{0.15cm}%
+  }%
+}
+
+% =========================================================================
+% 6. Page Styles
+% =========================================================================
+\renewcommand{\headrulewidth}{0.4pt}
+
+\fancypagestyle{sheetfirst}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0.4pt}%
+  \lfoot{\small Instructor: \InstructorName}%
+  \rfoot{\small\thepage/\pageref{LastPage}}%
+}
+
+\fancypagestyle{sheetrunning}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0.4pt}%
+  \renewcommand{\footrulewidth}{0.4pt}%
+  \lhead{\small\CourseCodeName}%
+  \rhead{\small\ExamDetails}%
+  \lfoot{\small Instructor: \InstructorName}%
+  \rfoot{\small\thepage/\pageref{LastPage}}%
+}
+
+\AtBeginDocument{\pagestyle{sheetrunning}}
+
+% =========================================================================
+% 7. Full Header — Question Sheet
+% =========================================================================
+\newcommand{\questionsheetheader}{%
+  \thispagestyle{sheetfirst}%
+  \begin{center}
+    % Replace BZU_LOGO with your actual logo file name if needed.
+    \includegraphics[width=4cm]{BZU_LOGO}\\[0.15cm]
+    {\normalsize\Department}\\[0.05cm]
+    {\normalsize\CourseCodeName\ /\ \Semester}\\[0.05cm]
+    {\normalsize\ExamDetails}\\[0.05cm]
+    {\small\textbf{Time:} \Duration\ \textbf{|}\
+    \textbf{Total Marks:} \TotalMarks\ \textbf{|}\
+    \textbf{Weight:} \weight\%}
+  \end{center}
+  \noindent
+  \begin{tabularx}{\textwidth}{@{} X c X @{}}
+    \textbf{Student Name:} \hrulefill & \hspace{0.5cm} &
+    \textbf{Student ID:} \hrulefill
+  \end{tabularx}
+  \vspace{0.4cm}
+}
+
+% =========================================================================
+% 8. Compact Header — Answer Sheet
+% =========================================================================
+\newcommand{\answersheetheader}{%
+  \thispagestyle{sheetfirst}%
+  \begin{center}
+    {\large\textbf{Answer Sheet}}
+  \end{center}
+}
+
+% =========================================================================
+% 9. Compact Header — Answer Key
+% =========================================================================
+\newcommand{\keyanswerheader}{%
+  \thispagestyle{sheetfirst}%
+  \begin{center}
+    {\large\textbf{Answer Key}}
+  \end{center}
+}
+
+% =========================================================================
+% Document
+% =========================================================================
+\begin{document}
+
+% -------------------------------------------------------------------------
+% Part 1: Question Sheet
+% -------------------------------------------------------------------------
+\setboolean{isAnswerMode}{false}
+\setboolean{isKeyMode}{false}
+\questionsheetheader
+
+% Put the exam questions in this file.
+\input{Chapter7_8_Quiz/questions}
+
+% -------------------------------------------------------------------------
+% Part 2: Blank Answer Sheet
+% -------------------------------------------------------------------------
+\clearpage
+\setboolean{isAnswerMode}{true}
+\setboolean{isKeyMode}{false}
+\questionsheetheader
+\answersheetheader
+
+% Put the blank answer sheet layout in this file.
+\input{Chapter7_8_Quiz/answersheet}
+
+% -------------------------------------------------------------------------
+% Optional Extra Paper
+% -------------------------------------------------------------------------
+\clearpage
+\thispagestyle{sheetfirst}
+\begin{center}
+  {\large\textbf{Extra Paper}}\\[0.25cm]
+  {\small Clearly label which question you are answering.}
+\end{center}
+\vfill
+
+% -------------------------------------------------------------------------
+% Part 3: Answer Key
+% -------------------------------------------------------------------------
+\clearpage
+\setboolean{isAnswerMode}{false}
+\setboolean{isKeyMode}{true}
+\questionsheetheader
+\keyanswerheader
+
+% Put the complete model answers in this file.
+\input{Chapter7_8_Quiz/keyanswers}
+
+\end{document}
