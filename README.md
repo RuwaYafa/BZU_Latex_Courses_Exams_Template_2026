@@ -5,8 +5,6 @@ A reusable LaTeX framework for creating **Question Sheets**, **Answer Sheets**, 
 This template is designed for university courses and emphasizes **consistency**, **maintainability**, and **ease of reuse** across different courses and semesters.
 
 > *"The measure of a great teacher is not what they know — but what they awaken in others."*  
-> **— Ruwa AbuHweidi**
-
 ---
 
 # ✨ Features
