@@ -39,10 +39,6 @@ Project/
 └── PROMPT.md
 ```
 
----
-
-# 🚀 Quick Start
-
 ## 🌐 Online Template
 
 This template is also available as a **read-only Overleaf project**, allowing you to preview, copy, and start using it instantly without downloading the repository.
@@ -50,7 +46,11 @@ This template is also available as a **read-only Overleaf project**, allowing yo
 🔗 **Open in Overleaf:**  
 https://www.overleaf.com/read/fxpnxmztwfwq#20ac7e
 
-> To create your own editable copy, open the project and select **Menu → Copy Project** (or use **Copy Project** if prompted). Overleaf allows projects to be shared via read-only links for viewing and copying. :contentReference[oaicite:0]{index=0}
+> To create your own editable copy, open the project and select **Menu → Copy Project** (or use **Copy Project** if prompted). Overleaf allows projects to be shared via read-only links for viewing and copying. 
+
+---
+
+# 🚀 Quick Start
 
 ### 1. Open `main.tex`
 
